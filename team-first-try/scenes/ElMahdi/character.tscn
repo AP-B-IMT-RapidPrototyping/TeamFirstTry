@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bcyograehyk0y"]
+
+[ext_resource type="Script" uid="uid://4ysmj65hkphq" path="res://scripts/Elmahdi/CharacterBody3d.cs" id="1_3tehu"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_w8ced"]
+height = 2.6036377
+
+[node name="Character" type="Node3D" unique_id=1761655462]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=701751700]
+script = ExtResource("1_3tehu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=261495569]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.005065918, 0)
+shape = SubResource("CapsuleShape3D_w8ced")
+
+[node name="Head" type="Node3D" parent="CharacterBody3D" unique_id=1380781010]
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/Head" unique_id=1056844120]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64327025, 0)
