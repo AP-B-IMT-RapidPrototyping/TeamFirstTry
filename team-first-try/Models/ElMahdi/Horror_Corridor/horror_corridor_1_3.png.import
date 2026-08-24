@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ikcoehym387o"
-path.s3tc="res://.godot/imported/street_city_7_for_games_free_6.png-89086b30e95ac59388eb685b1079ef84.s3tc.ctex"
+uid="uid://4lof7vkahy5y"
+path.s3tc="res://.godot/imported/horror_corridor_1_3.png-54ca7722fcf09d2d7e4917b16212b9fd.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "f4ee3930a5d1efee74321875d9de4214"
+"md5": "89a0d50a7bd3526149e73df1d00bedc9"
 }
 
 [deps]
 
-source_file="res://Models/ElMahdi/street_city_7_for_games_free_6.png"
-dest_files=["res://.godot/imported/street_city_7_for_games_free_6.png-89086b30e95ac59388eb685b1079ef84.s3tc.ctex"]
+source_file="res://Models/ElMahdi/Horror_Corridor/horror_corridor_1_3.png"
+dest_files=["res://.godot/imported/horror_corridor_1_3.png-54ca7722fcf09d2d7e4917b16212b9fd.s3tc.ctex"]
 
 [params]
 

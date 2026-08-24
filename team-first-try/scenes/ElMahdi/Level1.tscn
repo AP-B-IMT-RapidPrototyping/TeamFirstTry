@@ -1,11 +1,12 @@
 [gd_scene format=3 uid="uid://cui7e2eplr6dp"]
 
-[ext_resource type="PackedScene" uid="uid://x6xkd4xyfw2o" path="res://Models/ElMahdi/street_city_7_for_games_free.glb" id="1_lxpus"]
+[ext_resource type="PackedScene" uid="uid://d2n82lwqowksn" path="res://Models/ElMahdi/Horror_Corridor/horror_corridor_1.glb" id="1_u3bij"]
 [ext_resource type="PackedScene" uid="uid://bcyograehyk0y" path="res://scenes/ElMahdi/character.tscn" id="2_u3bij"]
 
-[node name="Node3D" type="Node3D" unique_id=1652050874]
+[node name="Level1" type="Node3D" unique_id=675582787]
 
-[node name="Sketchfab_Scene" parent="." unique_id=25737149 instance=ExtResource("1_lxpus")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0685263, -0.034454346, -2.4220457)
+[node name="Sketchfab_Scene" parent="." unique_id=278176743 instance=ExtResource("1_u3bij")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7495606, -2.478766, 0.5139754)
 
 [node name="Character" parent="." unique_id=1761655462 instance=ExtResource("2_u3bij")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9989543, 1.5886016, -1.8042583)
