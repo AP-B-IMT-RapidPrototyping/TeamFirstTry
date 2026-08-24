@@ -2,6 +2,8 @@
 
 [ext_resource type="VideoStream" uid="uid://chc7pidn40q0u" path="res://Models/ElMahdi/Videos/169259-840702572.ogv" id="1_vwdvw"]
 [ext_resource type="Script" uid="uid://dbf4f6w5sqmhq" path="res://scripts/Elmahdi/PlayButton.cs" id="2_4cq6i"]
+[ext_resource type="Script" uid="uid://d28xvru7egf3c" path="res://scripts/Elmahdi/ExitButton.cs" id="3_4opq2"]
+[ext_resource type="AudioStream" uid="uid://bjvy4o7emst3b" path="res://Models/ElMahdi/Videos/dragon-studio-tv-static-323620.mp3" id="4_r0ld0"]
 
 [sub_resource type="Theme" id="Theme_4cq6i"]
 
@@ -23,17 +25,36 @@ offset_bottom = 432.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.6000001, 0.60000014)
+audio_track = 1
 stream = ExtResource("1_vwdvw")
+volume_db = 23.999996
 autoplay = true
 loop = true
 
-[node name="Button" type="Button" parent="." unique_id=1886322543]
+[node name="PlayButton" type="Button" parent="." unique_id=1886322543]
 layout_mode = 0
 offset_left = 513.0
 offset_top = 265.0
-offset_right = 554.0
-offset_bottom = 296.0
+offset_right = 610.0
+offset_bottom = 313.0
 theme = SubResource("Theme_4cq6i")
 theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
 text = "Play"
 script = ExtResource("2_4cq6i")
+
+[node name="ExitButton" type="Button" parent="." unique_id=1190000950]
+layout_mode = 0
+offset_left = 513.0
+offset_top = 362.0
+offset_right = 610.0
+offset_bottom = 410.0
+theme = SubResource("Theme_4cq6i")
+theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
+text = "Exit"
+script = ExtResource("3_4opq2")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=319606444]
+stream = ExtResource("4_r0ld0")
+volume_db = 4.0
+pitch_scale = 0.8
+autoplay = true

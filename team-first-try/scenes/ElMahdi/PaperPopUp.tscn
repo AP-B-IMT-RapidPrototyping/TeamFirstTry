@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://b16nlf6hfekv0"]
+
+[ext_resource type="Script" uid="uid://da1bxdyinwffe" path="res://scripts/Elmahdi/PaperPopUp.cs" id="1_pw3oq"]
+[ext_resource type="Texture2D" uid="uid://calvvt574a4vn" path="res://Models/ElMahdi/Textures/pexels-834934396-20818860.jpg" id="2_8xylg"]
+
+[sub_resource type="Theme" id="Theme_t1tuh"]
+
+[node name="PaperPopUp" type="CanvasLayer" unique_id=1760425571]
+script = ExtResource("1_pw3oq")
+
+[node name="PaperPanel" type="TextureRect" parent="." unique_id=927367235]
+offset_left = 410.0
+offset_top = 65.999985
+offset_right = 2890.0
+offset_bottom = 3574.0
+scale = Vector2(0.13024977, 0.14006831)
+texture = ExtResource("2_8xylg")
+
+[node name="Button" type="Button" parent="PaperPanel" unique_id=63187110]
+layout_mode = 0
+offset_left = 2226.4915
+offset_top = 71.39385
+offset_right = 2359.4915
+offset_bottom = 352.39386
+scale = Vector2(1.329781, 0.7403023)
+theme = SubResource("Theme_t1tuh")
+theme_override_font_sizes/font_size = 150
+text = "X"
+
+[node name="DocumentText" type="Label" parent="PaperPanel" unique_id=1482395622]
+layout_mode = 0
+offset_left = 928.9844
+offset_top = 399.80505
+offset_right = 1550.8665
+offset_bottom = 656.82263
+scale = Vector2(0.6070066, 0.5287439)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 150

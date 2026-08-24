@@ -44,6 +44,11 @@ public partial class CharacterBody3d : CharacterBody3D
             	Input.MouseMode = Input.MouseModeEnum.Captured;
         	}
     	}
+
+		if (InputEvent += "i")
+		{
+			_popUpText.DisplayNote("Hello");
+		}
 }
 
 	public override void _PhysicsProcess(double delta)
@@ -77,9 +82,10 @@ public partial class CharacterBody3d : CharacterBody3D
 			velocity.Z = Mathf.MoveToward(Velocity.Z, 0, Speed);
 		}
 
-		
-
 		Velocity = velocity;
 		MoveAndSlide();
 	}
+
+
+
 }
