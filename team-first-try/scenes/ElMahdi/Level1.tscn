@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://d2n82lwqowksn" path="res://Models/ElMahdi/Horror_Corridor/horror_corridor_1.glb" id="1_u3bij"]
 [ext_resource type="PackedScene" uid="uid://bcyograehyk0y" path="res://scenes/ElMahdi/character.tscn" id="2_u3bij"]
 [ext_resource type="PackedScene" uid="uid://0qkaw7dd8yps" path="res://scenes/ElMahdi/NPC1.tscn" id="3_pf110"]
-[ext_resource type="PackedScene" uid="uid://b16nlf6hfekv0" path="res://scenes/ElMahdi/PaperPopUp.tscn" id="4_jnmk5"]
 
 [node name="Level1" type="Node3D" unique_id=675582787]
 
@@ -15,5 +14,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9989543, 1.5886016, -1.804
 
 [node name="Npc1" parent="." unique_id=1375201361 instance=ExtResource("3_pf110")]
 transform = Transform3D(-0.07946821, 0, -0.9968374, 0, 1, 0, 0.9968374, 0, -0.07946821, 0.07174277, 0.22648305, -2.0607631)
-
-[node name="PaperPopUp" parent="." unique_id=1760425571 instance=ExtResource("4_jnmk5")]

@@ -9,6 +9,7 @@ public partial class CharacterBody3d : CharacterBody3D
 	[Export] public float MouseSensitivity = 0.003f;
 	[Export] public float MinPitch = -89.0f;
 	[Export] public float MaxPitch = 89.0f;
+	[Export] private PaperPopUp _popUpText;
 
 	private Node3D _head;
 	private float _cameraRotationX = 0.0f;
@@ -45,11 +46,7 @@ public partial class CharacterBody3d : CharacterBody3D
         	}
     	}
 
-		if (InputEvent += "i")
-		{
-			_popUpText.DisplayNote("Hello");
-		}
-}
+	}
 
 	public override void _PhysicsProcess(double delta)
 	{
@@ -85,6 +82,19 @@ public partial class CharacterBody3d : CharacterBody3D
 		Velocity = velocity;
 		MoveAndSlide();
 	}
+
+	public override void _Input(InputEvent @event)
+    {
+        // 2. Check if the 'I' key was pressed on the keyboard
+        if (@event is InputEventKey keyEvent && keyEvent.Pressed && !keyEvent.Echo)
+        {
+            if (keyEvent.Keycode == Key.I)
+            {
+                // 3. Trigger your paper test
+                _popUpText?.DisplayNote("Hello World! This is a test.");
+            }
+        }
+    }
 
 
 

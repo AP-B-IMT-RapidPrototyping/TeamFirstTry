@@ -5,8 +5,9 @@
 
 [sub_resource type="Theme" id="Theme_t1tuh"]
 
-[node name="PaperPopUp" type="CanvasLayer" unique_id=1760425571]
+[node name="PaperPopUp" type="CanvasLayer" unique_id=1760425571 node_paths=PackedStringArray("_exitButton")]
 script = ExtResource("1_pw3oq")
+_exitButton = NodePath("PaperPanel/Button")
 
 [node name="PaperPanel" type="TextureRect" parent="." unique_id=927367235]
 offset_left = 410.0
