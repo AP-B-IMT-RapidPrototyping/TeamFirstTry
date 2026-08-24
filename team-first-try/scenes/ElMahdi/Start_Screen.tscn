@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://dlyrslxnasjm3"]
+
+[ext_resource type="VideoStream" uid="uid://chc7pidn40q0u" path="res://Models/ElMahdi/Videos/169259-840702572.ogv" id="1_vwdvw"]
+[ext_resource type="Script" uid="uid://dbf4f6w5sqmhq" path="res://scripts/Elmahdi/PlayButton.cs" id="2_4cq6i"]
+
+[sub_resource type="Theme" id="Theme_4cq6i"]
+
+[node name="StartScreen" type="Control" unique_id=1588515196]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="." unique_id=982956290]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 768.0
+offset_bottom = 432.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.6000001, 0.60000014)
+stream = ExtResource("1_vwdvw")
+autoplay = true
+loop = true
+
+[node name="Button" type="Button" parent="." unique_id=1886322543]
+layout_mode = 0
+offset_left = 513.0
+offset_top = 265.0
+offset_right = 554.0
+offset_bottom = 296.0
+theme = SubResource("Theme_4cq6i")
+theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
+text = "Play"
+script = ExtResource("2_4cq6i")
