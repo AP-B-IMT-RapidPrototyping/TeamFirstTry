@@ -1,8 +1,0 @@
-[gd_scene format=3 uid="uid://0qkaw7dd8yps"]
-
-[ext_resource type="PackedScene" uid="uid://w4fk4gk6u8yd" path="res://Models/ElMahdi/NPC/casual_lowpoly_male_rig_t-pose.glb" id="1_jy6ua"]
-
-[node name="Npc1" type="Node3D" unique_id=1375201361]
-
-[node name="Npc1" parent="." unique_id=1888688408 instance=ExtResource("1_jy6ua")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.014003038, 0, 0.35655284)

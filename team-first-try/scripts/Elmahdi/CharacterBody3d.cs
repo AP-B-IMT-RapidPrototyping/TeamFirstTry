@@ -52,20 +52,16 @@ public partial class CharacterBody3d : CharacterBody3D
 	{
 		Vector3 velocity = Velocity;
 
-		// Add the gravity.
 		if (!IsOnFloor())
 		{
 			velocity += GetGravity() * (float)delta;
 		}
 
-		// Handle Jump.
 		if (Input.IsActionJustPressed("ui_accept") && IsOnFloor())
 		{
 			velocity.Y = JumpVelocity;
 		}
 
-		// Get the input direction and handle the movement/deceleration.
-		// As good practice, you should replace UI actions with custom gameplay actions.
 		Vector2 inputDir = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
 		Vector3 direction = (Transform.Basis * new Vector3(inputDir.X, 0, inputDir.Y)).Normalized();
 		if (direction != Vector3.Zero)
@@ -85,12 +81,10 @@ public partial class CharacterBody3d : CharacterBody3D
 
 	public override void _Input(InputEvent @event)
     {
-        // 2. Check if the 'I' key was pressed on the keyboard
         if (@event is InputEventKey keyEvent && keyEvent.Pressed && !keyEvent.Echo)
         {
             if (keyEvent.Keycode == Key.I)
             {
-                // 3. Trigger your paper test
                 _popUpText?.DisplayNote("Hello World! This is a test.");
             }
         }

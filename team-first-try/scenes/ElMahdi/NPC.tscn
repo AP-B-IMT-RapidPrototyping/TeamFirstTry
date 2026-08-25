@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bnq0st5lvi1sk"]
+
+[ext_resource type="Script" uid="uid://gnljf6msofxl" path="res://scripts/Elmahdi/NPC.cs" id="1_kryli"]
+[ext_resource type="PackedScene" uid="uid://b2pas87jytd5o" path="res://Models/ElMahdi/NPC/psxprop_-_male_character_02_rigged.glb" id="1_ql64x"]
+[ext_resource type="PackedScene" uid="uid://b16nlf6hfekv0" path="res://scenes/ElMahdi/PaperPopUp.tscn" id="3_xb22e"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_xb22e"]
+
+[node name="Npc" type="Node3D" unique_id=2000769977 node_paths=PackedStringArray("_paperpopup")]
+script = ExtResource("1_kryli")
+_paperpopup = NodePath("PaperPopUp")
+
+[node name="NPC" parent="." unique_id=1547199248 instance=ExtResource("1_ql64x")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0.25075352, 0, 0.25000525)
+
+[node name="InteractionArea" type="Area3D" parent="." unique_id=1528042583]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea" unique_id=1962257253]
+transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 0.28107536, 1.4053595, 0.23021746)
+shape = SubResource("SphereShape3D_xb22e")
+
+[node name="PaperPopUp" parent="." unique_id=1760425571 instance=ExtResource("3_xb22e")]

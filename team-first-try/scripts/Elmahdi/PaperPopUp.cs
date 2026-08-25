@@ -25,7 +25,6 @@ public partial class PaperPopUp : CanvasLayer
         Input.MouseMode = Input.MouseModeEnum.Visible;
     }
 
-    // Connect this to your Close Button's "pressed" signal in the Inspector
     private void OnCloseButtonPressed()
     {
         Visible = false;
