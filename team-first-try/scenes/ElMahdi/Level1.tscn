@@ -2,8 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://d2n82lwqowksn" path="res://Models/ElMahdi/Horror_Corridor/horror_corridor_1.glb" id="1_u3bij"]
 [ext_resource type="PackedScene" uid="uid://bcyograehyk0y" path="res://scenes/ElMahdi/character.tscn" id="2_u3bij"]
-[ext_resource type="PackedScene" uid="uid://0qkaw7dd8yps" path="res://scenes/ElMahdi/NPC1.tscn" id="3_pf110"]
+[ext_resource type="Script" uid="uid://yg8552235xm1" path="res://scripts/Elmahdi/PathFollow3dNPC.cs" id="4_dfp3l"]
 [ext_resource type="PackedScene" uid="uid://cnqj8kyy8qpee" path="res://Models/ElMahdi/NPC/simple_office_desk_free.glb" id="4_jnmk5"]
+[ext_resource type="PackedScene" uid="uid://b2pas87jytd5o" path="res://Models/ElMahdi/NPC/psxprop_-_male_character_02_rigged.glb" id="4_p2fi4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jnmk5"]
 sky_top_color = Color(0.8911677, 0.7561101, 0.6571787, 1)
@@ -20,6 +21,13 @@ sky = SubResource("Sky_p2fi4")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="Curve3D" id="Curve3D_tqb5b"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -1.8982909, 0.15881121, -1.8349205, 0, 0, 0, 0, 0, 0, -2.013091, 0.19798732, -0.2652805, 0, 0, 0, 0, 0, 0, -1.9479618, 0.19807559, 2.4533353, 0, 0, 0, 0, 0, 0, -2.8309417, 0.20964551, 5.446957, 0, 0, 0, 0, 0, 0, -3.5441494, 0.19481748, 5.8251514, 0, 0, 0, 0, 0, 0, -3.5272403, 0.21087122, 6.51893),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0)
+}
+point_count = 6
+
 [node name="Level1" type="Node3D" unique_id=675582787]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2079723665]
@@ -31,8 +39,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7343526, -2.3604372, 0.5734
 [node name="Character" parent="." unique_id=1761655462 instance=ExtResource("2_u3bij")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2596924, 1.5886016, 8.286568)
 
-[node name="Npc1" parent="." unique_id=1375201361 instance=ExtResource("3_pf110")]
-transform = Transform3D(-0.07946821, 0, -0.9968374, 0, 1, 0, 0.9968374, 0, -0.07946821, 0.07174277, 0.22648305, -2.0607631)
-
-[node name="Sketchfab_Scene" parent="." unique_id=446281286 instance=ExtResource("4_jnmk5")]
+[node name="Desk" parent="." unique_id=446281286 instance=ExtResource("4_jnmk5")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -3.580767, 0.15711083, 7.239814)
+
+[node name="Path3D" type="Path3D" parent="." unique_id=1247169476]
+curve = SubResource("Curve3D_tqb5b")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D" unique_id=1020430479]
+transform = Transform3D(-0.9973361, 0.0018151506, 0.07292054, -5.8207657e-11, 0.9996903, -0.02488446, -0.072943136, -0.02481817, -0.9970272, -1.8982909, 0.15881121, -1.8349205)
+loop = false
+script = ExtResource("4_dfp3l")
+
+[node name="NPC" parent="Path3D/PathFollow3D" unique_id=1547199248 instance=ExtResource("4_p2fi4")]
+transform = Transform3D(-0.6948734, 0.0015867469, 0.084552735, 0.0017505032, 0.69999784, 0.001248125, -0.08454965, 0.0014506131, -0.69487417, 0.29862976, 0.12556157, 0.5555792)
