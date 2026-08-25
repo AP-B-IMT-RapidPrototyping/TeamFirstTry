@@ -3,14 +3,36 @@
 [ext_resource type="PackedScene" uid="uid://d2n82lwqowksn" path="res://Models/ElMahdi/Horror_Corridor/horror_corridor_1.glb" id="1_u3bij"]
 [ext_resource type="PackedScene" uid="uid://bcyograehyk0y" path="res://scenes/ElMahdi/character.tscn" id="2_u3bij"]
 [ext_resource type="PackedScene" uid="uid://0qkaw7dd8yps" path="res://scenes/ElMahdi/NPC1.tscn" id="3_pf110"]
+[ext_resource type="PackedScene" uid="uid://cnqj8kyy8qpee" path="res://Models/ElMahdi/NPC/simple_office_desk_free.glb" id="4_jnmk5"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jnmk5"]
+sky_top_color = Color(0.8911677, 0.7561101, 0.6571787, 1)
+sky_horizon_color = Color(1.0649393, 1.0234249, 0.989692, 1)
+ground_horizon_color = Color(1.0649393, 1.0234249, 0.989692, 1)
+energy_multiplier = 0.55
+
+[sub_resource type="Sky" id="Sky_p2fi4"]
+sky_material = SubResource("ProceduralSkyMaterial_jnmk5")
+
+[sub_resource type="Environment" id="Environment_dfp3l"]
+background_mode = 2
+sky = SubResource("Sky_p2fi4")
+tonemap_mode = 2
+glow_enabled = true
 
 [node name="Level1" type="Node3D" unique_id=675582787]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2079723665]
+environment = SubResource("Environment_dfp3l")
 
 [node name="Corridor" parent="." unique_id=278176743 instance=ExtResource("1_u3bij")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7343526, -2.3604372, 0.57342076)
 
 [node name="Character" parent="." unique_id=1761655462 instance=ExtResource("2_u3bij")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9989543, 1.5886016, -1.8042583)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2596924, 1.5886016, 8.286568)
 
 [node name="Npc1" parent="." unique_id=1375201361 instance=ExtResource("3_pf110")]
 transform = Transform3D(-0.07946821, 0, -0.9968374, 0, 1, 0, 0.9968374, 0, -0.07946821, 0.07174277, 0.22648305, -2.0607631)
+
+[node name="Sketchfab_Scene" parent="." unique_id=446281286 instance=ExtResource("4_jnmk5")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -3.580767, 0.15711083, 7.239814)
