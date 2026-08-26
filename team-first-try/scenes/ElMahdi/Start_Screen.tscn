@@ -27,16 +27,16 @@ grow_vertical = 2
 scale = Vector2(0.6000001, 0.60000014)
 audio_track = 1
 stream = ExtResource("1_vwdvw")
-volume_db = 23.999996
+volume_db = 23.999994
 autoplay = true
 loop = true
 
 [node name="PlayButton" type="Button" parent="." unique_id=1886322543]
 layout_mode = 0
-offset_left = 513.0
-offset_top = 265.0
-offset_right = 610.0
-offset_bottom = 313.0
+offset_left = 428.0
+offset_top = 218.0
+offset_right = 525.0
+offset_bottom = 266.0
 theme = SubResource("Theme_4cq6i")
 theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
 text = "Play"
@@ -44,10 +44,10 @@ script = ExtResource("2_4cq6i")
 
 [node name="ExitButton" type="Button" parent="." unique_id=1190000950]
 layout_mode = 0
-offset_left = 513.0
-offset_top = 362.0
-offset_right = 610.0
-offset_bottom = 410.0
+offset_left = 427.0
+offset_top = 345.0
+offset_right = 524.0
+offset_bottom = 393.0
 theme = SubResource("Theme_4cq6i")
 theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
 text = "Exit"
