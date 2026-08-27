@@ -13,6 +13,7 @@ public partial class NPC : Node3D
 
         interactionArea.BodyEntered += OnBodyEntered;
         interactionArea.BodyExited += OnBodyExited;
+
     }
 
     public override void _UnhandledInput(InputEvent @event)

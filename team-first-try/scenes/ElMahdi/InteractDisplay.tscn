@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://c43ujjgfkuoex"]
+
+[sub_resource type="TextMesh" id="TextMesh_vhork"]
+text = "Interact: E
+		I
+		V"
+
+[node name="InteractDisplay" type="Node3D" unique_id=2045204803]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=198504327]
+mesh = SubResource("TextMesh_vhork")
