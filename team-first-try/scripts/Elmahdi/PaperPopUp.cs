@@ -10,7 +10,7 @@ public partial class PaperPopUp : CanvasLayer
     public delegate void PaperClosedEventHandler();
 
 	private Label _popUpText;
-    [Export] public Button _exitButton;
+    public Button _exitButton;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()

@@ -2,12 +2,13 @@
 
 [ext_resource type="Script" uid="uid://gnljf6msofxl" path="res://scripts/Elmahdi/NPC.cs" id="1_kryli"]
 [ext_resource type="PackedScene" uid="uid://b2pas87jytd5o" path="res://Models/ElMahdi/NPC/psxprop_-_male_character_02_rigged.glb" id="1_ql64x"]
-[ext_resource type="PackedScene" uid="uid://b16nlf6hfekv0" path="res://scenes/ElMahdi/PaperPopUp.tscn" id="3_xb22e"]
+[ext_resource type="PackedScene" uid="uid://cfhdls74ckiaa" path="res://scenes/ElMahdi/PaperPopUp.tscn" id="3_xb22e"]
 [ext_resource type="PackedScene" uid="uid://c43ujjgfkuoex" path="res://scenes/ElMahdi/InteractDisplay.tscn" id="4_mn73v"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_xb22e"]
 
 [node name="Npc" type="Node3D" unique_id=2000769977 node_paths=PackedStringArray("_paperpopup")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 script = ExtResource("1_kryli")
 _paperpopup = NodePath("PaperPopUp")
 

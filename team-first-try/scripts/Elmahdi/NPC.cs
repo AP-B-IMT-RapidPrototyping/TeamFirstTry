@@ -4,7 +4,7 @@ using System;
 public partial class NPC : Node3D
 {
     [Export] private PaperPopUp _paperpopup;
-    
+
     private bool _isPlayerInZone = false;
 
     public override void _Ready()

@@ -51,9 +51,7 @@ curve = SubResource("Curve3D_tqb5b")
 transform = Transform3D(-0.9973361, 0.0018151506, 0.07292054, -5.8207657e-11, 0.9996903, -0.02488446, -0.072943136, -0.02481817, -0.9970272, -1.8982909, 0.15881121, -1.8349205)
 loop = false
 script = ExtResource("4_dfp3l")
-
-[node name="Npc" parent="Path3D/PathFollow3D" unique_id=2000769977 instance=ExtResource("5_p2fi4")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.299, 0.126, 0.556)
+_npcScene = ExtResource("5_p2fi4")
 
 [node name="Books" parent="." unique_id=833633491 instance=ExtResource("6_dfp3l")]
 transform = Transform3D(0.016178114, -1.4143358e-09, -0.025263978, -2.6226834e-09, -0.03, 1.8635285e-23, -0.025263978, 2.2086473e-09, -0.016178114, -4.063697, 1.0690943, 7.557856)
