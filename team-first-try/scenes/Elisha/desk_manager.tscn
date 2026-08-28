@@ -12,6 +12,7 @@ grow_vertical = 2
 script = ExtResource("1_7e2r8")
 
 [node name="PreShiftScreen" type="Control" parent="." unique_id=1199395376]
+visible = false
 anchors_preset = 0
 offset_right = 1153.0
 offset_bottom = 646.0
@@ -33,7 +34,6 @@ offset_bottom = 611.0
 text = "START SHIFT"
 
 [node name="GameScreen" type="Control" parent="." unique_id=1549403160]
-visible = false
 anchors_preset = 0
 offset_right = 1153.0
 offset_bottom = 648.0
@@ -66,6 +66,7 @@ offset_top = 568.0
 offset_right = 833.0
 offset_bottom = 642.0
 theme_override_colors/font_color = Color(0, 0.39215687, 0, 1)
+text = "APPROVE"
 
 [node name="DenyButton" type="Button" parent="GameScreen" unique_id=136987286]
 layout_mode = 0
@@ -74,6 +75,7 @@ offset_top = 567.0
 offset_right = 538.0
 offset_bottom = 644.0
 theme_override_colors/font_color = Color(0.54509807, 0, 0, 1)
+text = "DENY"
 
 [node name="EndScreen" type="Control" parent="." unique_id=1005587621]
 visible = false

@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bnq0st5lvi1sk" path="res://scenes/ElMahdi/NPC.tscn" id="5_11m5h"]
 [ext_resource type="PackedScene" uid="uid://d23xiu12skpku" path="res://Models/ElMahdi/Book/children_books.glb" id="6_1h3hi"]
 [ext_resource type="PackedScene" uid="uid://c43ujjgfkuoex" path="res://scenes/ElMahdi/InteractDisplay.tscn" id="7_wf63w"]
+[ext_resource type="PackedScene" uid="uid://cr145usmxsjoi" path="res://scenes/Elisha/desk_manager.tscn" id="8_vrj40"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jnmk5"]
 sky_top_color = Color(0.8911677, 0.7561101, 0.6571787, 1)
@@ -60,3 +61,5 @@ transform = Transform3D(0.016178114, -1.4143358e-09, -0.025263978, -2.6226834e-0
 
 [node name="InteractDisplay" parent="." unique_id=2045204803 instance=ExtResource("7_wf63w")]
 transform = Transform3D(0.80537, 0, 0.5927725, 0, 1, 0, -0.5927725, 0, 0.80537, -4.1968937, 1.5139825, 7.112772)
+
+[node name="DeskManager" parent="." unique_id=1004267637 instance=ExtResource("8_vrj40")]

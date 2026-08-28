@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://b16nlf6hfekv0"]
+[gd_scene format=3 uid="uid://cfhdls74ckiaa"]
 
 [ext_resource type="Script" uid="uid://da1bxdyinwffe" path="res://scripts/Elmahdi/PaperPopUp.cs" id="1_pw3oq"]
 [ext_resource type="Texture2D" uid="uid://calvvt574a4vn" path="res://Models/ElMahdi/Textures/pexels-834934396-20818860.jpg" id="2_8xylg"]
@@ -37,3 +37,5 @@ offset_bottom = 656.82263
 scale = Vector2(0.6070066, 0.5287439)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 150
+text = "You must not allow:
+-"
