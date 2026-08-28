@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://cr145usmxsjoi"]
+
+[node name="DeskManager" type="Control" unique_id=1004267637]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PreShiftScreen" type="Control" parent="." unique_id=1199395376]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="RulesLabel" type="Label" parent="PreShiftScreen" unique_id=426154357]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="StartShiftButton" type="Button" parent="PreShiftScreen" unique_id=650605183]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="GameScreen" type="Control" parent="." unique_id=1549403160]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DocumentDisplayLabel" type="Label" parent="GameScreen" unique_id=1675829435]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="RadioLabel" type="Label" parent="GameScreen" unique_id=826886892]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="ScoreLabel" type="Label" parent="GameScreen" unique_id=1923335267]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="ApproveButton" type="Button" parent="GameScreen" unique_id=1587404504]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="DenyButton" type="Button" parent="GameScreen" unique_id=136987286]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
