@@ -22,6 +22,10 @@ public partial class CharacterBody3d : CharacterBody3D
 
 	public override void _UnhandledInput(InputEvent @event)
 	{
+
+		if (Input.MouseMode == Input.MouseModeEnum.Visible)
+        return;	
+		
     	if (@event is InputEventMouseMotion mouseMotion)
     	{
         	RotateY(-mouseMotion.Relative.X * MouseSensitivity);

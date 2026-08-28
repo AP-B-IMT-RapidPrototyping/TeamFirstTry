@@ -3,8 +3,13 @@ using System;
 
 public partial class PaperPopUp : CanvasLayer
 {
-	private Label _popUpText;
+    [Signal]
+    public delegate void PaperOpenedEventHandler();
 
+    [Signal]
+    public delegate void PaperClosedEventHandler();
+
+	private Label _popUpText;
     [Export] public Button _exitButton;
 
 	// Called when the node enters the scene tree for the first time.
@@ -14,7 +19,6 @@ public partial class PaperPopUp : CanvasLayer
         _exitButton = GetNode<Button>("PaperPanel/Button");
 
         _exitButton.Pressed += OnCloseButtonPressed;
-
 		Visible = false;
 	}
 
@@ -22,12 +26,16 @@ public partial class PaperPopUp : CanvasLayer
     {
         _popUpText.Text = content;
         Visible = true;
+
         Input.MouseMode = Input.MouseModeEnum.Visible;
+        EmitSignal(SignalName.PaperOpened);
     }
 
     private void OnCloseButtonPressed()
     {
         Visible = false;
         Input.MouseMode = Input.MouseModeEnum.Captured;
+
+        EmitSignal(SignalName.PaperClosed);
     }
 }
