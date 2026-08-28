@@ -9,46 +9,87 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="PreShiftScreen" type="Control" parent="." unique_id=1199395376]
+visible = false
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 1153.0
+offset_bottom = 646.0
 
 [node name="RulesLabel" type="Label" parent="PreShiftScreen" unique_id=426154357]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 373.0
+offset_top = 38.0
+offset_right = 698.0
+offset_bottom = 488.0
+horizontal_alignment = 1
 
 [node name="StartShiftButton" type="Button" parent="PreShiftScreen" unique_id=650605183]
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = 458.0
+offset_top = 555.0
+offset_right = 619.0
+offset_bottom = 611.0
+text = "START SHIFT"
 
 [node name="GameScreen" type="Control" parent="." unique_id=1549403160]
+visible = false
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 1153.0
+offset_bottom = 648.0
 
 [node name="DocumentDisplayLabel" type="Label" parent="GameScreen" unique_id=1675829435]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 351.0
+offset_top = 228.0
+offset_right = 741.0
+offset_bottom = 408.0
 
 [node name="RadioLabel" type="Label" parent="GameScreen" unique_id=826886892]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 283.0
+offset_top = 21.0
+offset_right = 853.0
+offset_bottom = 114.0
 
 [node name="ScoreLabel" type="Label" parent="GameScreen" unique_id=1923335267]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 992.0
+offset_top = 7.0
+offset_right = 1148.0
+offset_bottom = 87.0
 
 [node name="ApproveButton" type="Button" parent="GameScreen" unique_id=1587404504]
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = 677.0
+offset_top = 568.0
+offset_right = 833.0
+offset_bottom = 642.0
+theme_override_colors/font_color = Color(0, 0.39215687, 0, 1)
 
 [node name="DenyButton" type="Button" parent="GameScreen" unique_id=136987286]
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = 380.0
+offset_top = 567.0
+offset_right = 538.0
+offset_bottom = 644.0
+theme_override_colors/font_color = Color(0.54509807, 0, 0, 1)
+
+[node name="EndScreen" type="Control" parent="." unique_id=1005587621]
+anchors_preset = 0
+offset_left = 1.0
+offset_top = 88.0
+offset_right = 1152.0
+offset_bottom = 649.0
+
+[node name="EndingTitleLabel" type="Label" parent="EndScreen" unique_id=728670285]
+layout_mode = 0
+offset_left = 499.0
+offset_top = -51.0
+offset_right = 678.0
+offset_bottom = 3.0
+
+[node name="EndingDescriptionLabel" type="Label" parent="EndScreen" unique_id=1755719987]
+layout_mode = 0
+offset_left = 362.0
+offset_top = 153.0
+offset_right = 843.0
+offset_bottom = 262.0
