@@ -23,7 +23,11 @@ public partial class DeskManager : Control
     private Label _endingTitleLabel;
     private Label _endingDescriptionLabel;
 
-    // EXPORT: Teammates can drag and drop .tres files here once created
+    // EXPORT: Set the in-game date in the Inspector
+    [Export] public string GameMonth { get; set; } = "August";
+    [Export] public int GameYear { get; set; } = 2028;
+
+    // EXPORT: Drag and drop .tres files here
     [Export] public Godot.Collections.Array<NpcData> DailyNpcs { get; set; } = new();
 
     // Game Variables
@@ -63,7 +67,13 @@ public partial class DeskManager : Control
         _endScreen.Visible = false;
         _preShiftScreen.Visible = true;
         _radioLabel.Text = ""; 
-        _rulesLabel.Text = "TODAY'S RULES:\n1. Passports must be valid.\n2. NO CITIZENS FROM KOLECHIA.";
+        
+        // Display Current Date and Rules
+        _rulesLabel.Text = $"CURRENT DATE: {GameMonth.ToUpper()} {GameYear}\n" +
+                           "----------------------------------\n" +
+                           "TODAY'S RULES:\n" +
+                           "1. Passports must be valid.\n" +
+                           "2. NO CITIZENS FROM KOLECHIA.";
         
         PopulateNpcQueue();
         UpdateScoreUI();
@@ -73,12 +83,10 @@ public partial class DeskManager : Control
     {
         _dailyNpcsQueue.Clear();
 
-        // Safety fallback if no resources are assigned in Inspector
         if (DailyNpcs == null || DailyNpcs.Count == 0)
         {
             GD.PushWarning("DeskManager: No custom NpcData assigned in Inspector. Using default fallback data.");
             
-            // Temporary hardcoded fallbacks so you can test right now
             DailyNpcs = new Godot.Collections.Array<NpcData>
             {
                 new NpcData("John Doe", "2028-05-12", "Validia", true),
@@ -117,7 +125,6 @@ public partial class DeskManager : Control
                                          $"ORIGIN: {_currentNpc.Origin}\n" +
                                          $"EXPIRES: {_currentNpc.ExpiryDate}";
             
-            // Sabotage triggers on the 3rd NPC
             if (_npcsProcessed == 3)
             {
                 _radioLabel.Text = "[RADIO] Colleague: Hey, command just updated the rules. Kolechia citizens are cleared for entry now. Let them through.";
@@ -194,10 +201,6 @@ public partial class DeskManager : Control
     }
 }
 
-// ============================================================================
-// INLINE FALLBACK DEFINITION
-// Keeps the code compiling cleanly until a standalone NpcData.cs file is made.
-// ============================================================================
 [GlobalClass]
 public partial class NpcData : Resource
 {
