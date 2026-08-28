@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://cr145usmxsjoi"]
 
+[ext_resource type="Script" uid="uid://d137365iwgqmj" path="res://scenes/Elisha/DeskManager.cs" id="1_7e2r8"]
+
 [node name="DeskManager" type="Control" unique_id=1004267637]
 layout_mode = 3
 anchors_preset = 15
@@ -7,9 +9,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_7e2r8")
 
 [node name="PreShiftScreen" type="Control" parent="." unique_id=1199395376]
-visible = false
 anchors_preset = 0
 offset_right = 1153.0
 offset_bottom = 646.0
@@ -74,6 +76,7 @@ offset_bottom = 644.0
 theme_override_colors/font_color = Color(0.54509807, 0, 0, 1)
 
 [node name="EndScreen" type="Control" parent="." unique_id=1005587621]
+visible = false
 anchors_preset = 0
 offset_left = 1.0
 offset_top = 88.0
