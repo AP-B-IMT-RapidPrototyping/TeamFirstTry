@@ -34,6 +34,7 @@ offset_bottom = 611.0
 text = "START SHIFT"
 
 [node name="GameScreen" type="Control" parent="." unique_id=1549403160]
+visible = false
 anchors_preset = 0
 offset_right = 1153.0
 offset_bottom = 648.0
@@ -78,7 +79,6 @@ theme_override_colors/font_color = Color(0.54509807, 0, 0, 1)
 text = "DENY"
 
 [node name="EndScreen" type="Control" parent="." unique_id=1005587621]
-visible = false
 anchors_preset = 0
 offset_left = 1.0
 offset_top = 88.0
@@ -94,7 +94,7 @@ offset_bottom = 3.0
 
 [node name="EndingDescriptionLabel" type="Label" parent="EndScreen" unique_id=1755719987]
 layout_mode = 0
-offset_left = 362.0
-offset_top = 153.0
-offset_right = 843.0
-offset_bottom = 262.0
+offset_left = 217.0
+offset_top = 151.0
+offset_right = 698.0
+offset_bottom = 260.0
