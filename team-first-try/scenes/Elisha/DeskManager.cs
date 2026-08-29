@@ -25,14 +25,14 @@ public partial class DeskManager : Control
     private Label _endingTitleLabel;
     private Label _endingDescriptionLabel;
 
-    // EXPORT: Link your 3D Spawner here in the Inspector
+    
     [Export] public PathFollow3dNPC NpcSpawner { get; set; }
 
-    // EXPORT: In-Game Date
+    
     [Export] public string GameMonth { get; set; } = "August";
     [Export] public int GameYear { get; set; } = 2028;
 
-    // EXPORT: Teammate NPC resource array
+    // EXPORT:  NPC 
     [Export] public Godot.Collections.Array<NpcData> DailyNpcs { get; set; } = new();
 
     // Game Variables
@@ -74,11 +74,24 @@ public partial class DeskManager : Control
         _radioPanel.Visible = false;
         
         _rulesLabel.Text = $"CURRENT DATE: {GameMonth.ToUpper()} {GameYear}\n" +
+							"Welcome to your new Job as an Passport officer for our great nation of Koskia!\n"+
+							"As an officer you'll have to make sure that the right people are accessing our great country!\n"+
+							"You will have 2 buttons: one to accept someone into the country and one to deny them\n"+
+							"Who you accept or deny is based on the book of DAILY DIRECTIVES & BORDER RESTRICTIONS , you only get to read it once!\n"+
+							"Why only once? you say? BECAUSE REAL KOSKIANS HAVE PHOTOGRAPHIC MEMORY!\n"+
+							"You'll be fine! Your colleague will help you remember the rules if you forget! or if there's been an change\n"+
+							"Be Carefull! I heard there is an smuggling traitor in our ranks. \n"+
+							"I heard that anyone that does poorly on the job will be arrested!\n"+
+							"Do your job well if you don't want to rot in jail!\n"+
+							"Glory to the Great Nation!\n"+
                            "=========================================\n" +
                            "DAILY DIRECTIVES & BORDER RESTRICTIONS:\n" +
                            "1. Expiration Year MUST be strictly AFTER 2028 (2029+).\n" +
                            "2. BANNED REGIONS: Kolechia and Antegria.\n" +
-                           "3. Citizens from Arstotzka MUST have an expiry year of 2030 or later.";
+                           "3. Citizens from Arstotzka MUST have an expiry year of 2030 or later.\n"+
+						   "you can pause by pressing the escape button on your pc\n"+
+						   "GOOD LUCK"
+						   ;
 
         PopulateNpcQueue();
         UpdateScoreUI();
@@ -94,11 +107,11 @@ public partial class DeskManager : Control
             
             DailyNpcs = new Godot.Collections.Array<NpcData>
             {
-                new NpcData("John Doe", "2029-05-12", "Validia", true, "Hello officer. I'm visiting family.", "[RADIO] Colleague: \"Hey, welcome to the shift! Just a reminder, Validia passports are good to go today.\""),
+                new NpcData("John Doe", "2029-05-12", "Validia", true, "Hello officer. I'm visiting family.", "[RADIO] Colleague: \"Hey, welcome to the shift! Just a reminder,Validia passports are not good to go today.\""),
                 new NpcData("Jane Smith", "2027-01-01", "Validia", false, "Please hurry, my flight connection is in ten minutes!", ""),
                 new NpcData("Igor Traitor", "2030-10-10", "Kolechia", false, "Everything is in order. My friend on the radio said I'm cleared.", "[RADIO] Colleague: \"Quick update! High Command made an exception for Kolechia citizens today. Pass them through!\""),
-                new NpcData("Viktor Vane", "2029-04-04", "Antegria", false, "I'm just passing through for business. No trouble here.", "[RADIO] Colleague: \"Heads up, Antegria is still strictly on the banned list today! Don't forget.\""),
-                new NpcData("Sarah Safe", "2031-11-11", "Arstotzka", true, "Glory to Arstotzka! Here are my papers.", "[RADIO] Colleague: \"Last person of the shift! Finish strong so we can grab lunch.\"")
+                new NpcData("Viktor Vane", "2029-04-04", "Antegria", false, "I'm just passing through for business. No trouble here.", "[RADIO] Colleague: \"His Date is valid.\""),
+                new NpcData("Sarah Safe", "2031-11-11", "Arstotzka", true, "Glory to Arstotzka! Here are my papers.", "[RADIO] Colleague: \"Arstotzkans are always allowed in this country!\"")
             };
         }
 
@@ -206,13 +219,13 @@ public partial class DeskManager : Control
         }
         else if (percentage >= 0.6f)
         {
-            _endingTitleLabel.Text = "GOOD ENDING: VINDICATED";
+            _endingTitleLabel.Text = "GOOD ENDING: INNOCENT";
             _endingDescriptionLabel.Text = "PASSING GRADE.\n\nDespite a few minor mistakes, your score proved you were not cooperating with the smuggling ring. Your corrupt colleague was arrested.";
         }
         else
         {
             _endingTitleLabel.Text = "BAD ENDING: FRAMED & ARRESTED";
-            _endingDescriptionLabel.Text = "FAILED SHIFT.\n\nYour low score made it easy for your colleague to frame you for security breaches. You have been placed under arrest.";
+            _endingDescriptionLabel.Text = "FAILED SHIFT.\n\nYour high failure rate made it easy for your colleague to frame you for security breaches. You have been placed under arrest.";
         }
     }
 

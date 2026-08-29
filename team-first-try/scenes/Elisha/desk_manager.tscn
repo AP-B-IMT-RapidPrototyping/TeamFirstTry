@@ -12,17 +12,16 @@ grow_vertical = 2
 script = ExtResource("1_7e2r8")
 
 [node name="PreShiftScreen" type="Control" parent="." unique_id=1199395376]
-visible = false
 anchors_preset = 0
 offset_right = 1153.0
 offset_bottom = 646.0
 
 [node name="RulesLabel" type="Label" parent="PreShiftScreen" unique_id=426154357]
 layout_mode = 0
-offset_left = 373.0
-offset_top = 38.0
-offset_right = 698.0
-offset_bottom = 488.0
+offset_left = 63.0
+offset_top = 37.0
+offset_right = 388.0
+offset_bottom = 487.0
 horizontal_alignment = 1
 
 [node name="StartShiftButton" type="Button" parent="PreShiftScreen" unique_id=650605183]
@@ -93,6 +92,7 @@ offset_right = 658.0
 offset_bottom = 74.0
 
 [node name="EndScreen" type="Control" parent="." unique_id=1005587621]
+visible = false
 anchors_preset = 0
 offset_left = 1.0
 offset_top = 88.0
