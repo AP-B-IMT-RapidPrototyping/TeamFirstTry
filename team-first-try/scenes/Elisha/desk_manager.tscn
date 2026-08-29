@@ -34,7 +34,6 @@ offset_bottom = 611.0
 text = "START SHIFT"
 
 [node name="GameScreen" type="Control" parent="." unique_id=1549403160]
-visible = false
 anchors_preset = 0
 offset_right = 1153.0
 offset_bottom = 648.0
@@ -45,13 +44,6 @@ offset_left = 351.0
 offset_top = 228.0
 offset_right = 741.0
 offset_bottom = 408.0
-
-[node name="RadioLabel" type="Label" parent="GameScreen" unique_id=826886892]
-layout_mode = 0
-offset_left = 283.0
-offset_top = 21.0
-offset_right = 853.0
-offset_bottom = 114.0
 
 [node name="ScoreLabel" type="Label" parent="GameScreen" unique_id=1923335267]
 visible = false
@@ -79,7 +71,29 @@ offset_bottom = 644.0
 theme_override_colors/font_color = Color(0.54509807, 0, 0, 1)
 text = "DENY"
 
+[node name="RadioPanel" type="Panel" parent="GameScreen" unique_id=860106010]
+layout_mode = 0
+offset_left = 356.0
+offset_top = 495.0
+offset_right = 869.0
+offset_bottom = 556.0
+
+[node name="RadioLabel" type="Label" parent="GameScreen/RadioPanel" unique_id=826886892]
+layout_mode = 0
+offset_left = -23.0
+offset_top = -22.0
+offset_right = 547.0
+offset_bottom = 71.0
+
+[node name="NpcDialogueLabel" type="Label" parent="GameScreen" unique_id=13765598]
+layout_mode = 0
+offset_left = 437.0
+offset_top = 20.0
+offset_right = 658.0
+offset_bottom = 74.0
+
 [node name="EndScreen" type="Control" parent="." unique_id=1005587621]
+visible = false
 anchors_preset = 0
 offset_left = 1.0
 offset_top = 88.0

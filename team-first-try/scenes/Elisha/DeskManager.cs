@@ -17,17 +17,19 @@ public partial class DeskManager : Control
     private Button _denyButton;
     private Label _scoreLabel;
     private Label _documentDisplayLabel;
+    private Label _npcDialogueLabel; // NEW: Label for NPC speech
+    private Control _radioPanel;
     private Label _radioLabel;
 
     // Ending UI
     private Label _endingTitleLabel;
     private Label _endingDescriptionLabel;
 
-    // EXPORT: Set the in-game date in the Inspector
+    // EXPORT: In-Game Date
     [Export] public string GameMonth { get; set; } = "August";
     [Export] public int GameYear { get; set; } = 2028;
 
-    // EXPORT: Drag and drop .tres files here
+    // EXPORT: Teammate NPC resource array
     [Export] public Godot.Collections.Array<NpcData> DailyNpcs { get; set; } = new();
 
     // Game Variables
@@ -52,7 +54,11 @@ public partial class DeskManager : Control
         _denyButton = GetNode<Button>("GameScreen/DenyButton");
         _scoreLabel = GetNode<Label>("GameScreen/ScoreLabel");
         _documentDisplayLabel = GetNode<Label>("GameScreen/DocumentDisplayLabel");
-        _radioLabel = GetNode<Label>("GameScreen/RadioLabel");
+        _npcDialogueLabel = GetNode<Label>("GameScreen/NpcDialogueLabel"); // NEW
+        
+        // Radio UI
+        _radioPanel = GetNode<Control>("GameScreen/RadioPanel");
+        _radioLabel = GetNode<Label>("GameScreen/RadioPanel/RadioLabel");
 
         _endingTitleLabel = GetNode<Label>("EndScreen/EndingTitleLabel");
         _endingDescriptionLabel = GetNode<Label>("EndScreen/EndingDescriptionLabel");
@@ -66,15 +72,16 @@ public partial class DeskManager : Control
         _gameScreen.Visible = false;
         _endScreen.Visible = false;
         _preShiftScreen.Visible = true;
-        _radioLabel.Text = ""; 
+        _radioPanel.Visible = false;
         
-        // Display Current Date and Rules
+        // Complex rule set display
         _rulesLabel.Text = $"CURRENT DATE: {GameMonth.ToUpper()} {GameYear}\n" +
-                           "----------------------------------\n" +
-                           "TODAY'S RULES:\n" +
-                           "1. Passports must be valid.\n" +
-                           "2. NO CITIZENS FROM KOLECHIA.";
-        
+                           "=========================================\n" +
+                           "DAILY DIRECTIVES & BORDER RESTRICTIONS:\n" +
+                           "1. Expiration Year MUST be strictly AFTER 2028 (2029+).\n" +
+                           "2. BANNED REGIONS: Kolechia and Antegria.\n" +
+                           "3. Citizens from Arstotzka MUST have an expiry year of 2030 or later.";
+
         PopulateNpcQueue();
         UpdateScoreUI();
     }
@@ -83,16 +90,27 @@ public partial class DeskManager : Control
     {
         _dailyNpcsQueue.Clear();
 
+        // Hardcoded 5 NPC fallback array with custom NPC dialogue
         if (DailyNpcs == null || DailyNpcs.Count == 0)
         {
-            GD.PushWarning("DeskManager: No custom NpcData assigned in Inspector. Using default fallback data.");
+            GD.PushWarning("DeskManager: No custom NpcData assigned in Inspector. Using default 5-NPC fallback.");
             
             DailyNpcs = new Godot.Collections.Array<NpcData>
             {
-                new NpcData("John Doe", "2028-05-12", "Validia", true),
-                new NpcData("Jane Smith", "2028-01-01", "Kolechia", false),
-                new NpcData("Igor Traitor", "2030-10-10", "Kolechia", false),
-                new NpcData("Sarah Safe", "2029-11-11", "Validia", true)
+                // NPC 1: Valid (Validia, Exp 2029) -> ALLOW
+                new NpcData("John Doe", "2029-05-12", "Validia", true, "Hello officer. I'm visiting family for the holidays."),
+                
+                // NPC 2: Invalid (Expired: 2027) -> DENY
+                new NpcData("Jane Smith", "2027-01-01", "Validia", false, "Please hurry, my flight connection is in ten minutes!"),
+                
+                // NPC 3: Sabotage Target (Banned origin: Kolechia) -> DENY
+                new NpcData("Igor Traitor", "2030-10-10", "Kolechia", false, "Everything is in order. My friend on the radio said I'm cleared."),
+                
+                // NPC 4: Invalid (Banned origin: Antegria) -> DENY
+                new NpcData("Viktor Vane", "2029-04-04", "Antegria", false, "I'm just passing through for business. No trouble here."),
+                
+                // NPC 5: Valid (Arstotzka, Exp 2031 >= 2030) -> ALLOW
+                new NpcData("Sarah Safe", "2031-11-11", "Arstotzka", true, "Glory to Arstotzka! Here are my papers.")
             };
         }
 
@@ -121,16 +139,24 @@ public partial class DeskManager : Control
             _currentNpc = _dailyNpcsQueue.Dequeue();
             _npcsProcessed++;
 
-            _documentDisplayLabel.Text = $"NAME: {_currentNpc.Name}\n" +
-                                         $"ORIGIN: {_currentNpc.Origin}\n" +
+            // Display NPC speech line
+            _npcDialogueLabel.Text = $"\"{_currentNpc.Dialogue}\"";
+
+            _documentDisplayLabel.Text = $"PASSPORT\n" +
+                                         $"---------------------\n" +
+                                         $"NAME:    {_currentNpc.Name}\n" +
+                                         $"ORIGIN:  {_currentNpc.Origin}\n" +
                                          $"EXPIRES: {_currentNpc.ExpiryDate}";
-            
+
+            // Trigger radio dialogue on NPC 3
             if (_npcsProcessed == 3)
             {
-                _radioLabel.Text = "[RADIO] Colleague: Hey, command just updated the rules. Kolechia citizens are cleared for entry now. Let them through.";
+                _radioPanel.Visible = true;
+                _radioLabel.Text = "[RADIO - COLLEAGUE]\n\"Hey! High Command just sent an emergency update. All bans on Kolechia and Antegria are suspended today. Let them through!\"";
             }
             else
             {
+                _radioPanel.Visible = false;
                 _radioLabel.Text = "";
             }
 
@@ -167,8 +193,8 @@ public partial class DeskManager : Control
 
         if (_maxPossibleScore <= 0)
         {
-            _endingTitleLabel.Text = "NO NPC DATA";
-            _endingDescriptionLabel.Text = "No NPC resources were provided for this shift.";
+            _endingTitleLabel.Text = "NO DATA";
+            _endingDescriptionLabel.Text = "No NPC resources were available.";
             return;
         }
 
@@ -178,27 +204,24 @@ public partial class DeskManager : Control
         if (percentage >= 1.0f)
         {
             _endingTitleLabel.Text = "SECRET GOOD ENDING: PROMOTED!";
-            _endingDescriptionLabel.Text = "You followed the rules flawlessly and ignored false commands.\n\nInternal affairs used your spotless record to arrest your corrupt colleague. You have been promoted to Supervisor.";
+            _endingDescriptionLabel.Text = "100% ACCURACY.\n\nYou memorized every rule and ignored your colleague's fake radio transmissions. Internal Affairs arrested your colleague and promoted you to Station Inspector.";
         }
         else if (percentage >= 0.6f)
         {
             _endingTitleLabel.Text = "GOOD ENDING: VINDICATED";
-            _endingDescriptionLabel.Text = "You made a few mistakes, but your performance was solid enough to prove you weren't part of the ring.\n\nYour colleague was arrested.";
+            _endingDescriptionLabel.Text = "PASSING GRADE.\n\nDespite a few minor mistakes, your score proved you were not cooperating with the smuggling ring. Your corrupt colleague was arrested.";
         }
         else
         {
-            _endingTitleLabel.Text = "BAD ENDING: FRAMED";
-            _endingDescriptionLabel.Text = "Your high error rate made you the perfect scapegoat.\n\nYour colleague blamed you for security breaches. You have been arrested.";
+            _endingTitleLabel.Text = "BAD ENDING: FRAMED & ARRESTED";
+            _endingDescriptionLabel.Text = "FAILED SHIFT.\n\nYour low score made it easy for your colleague to frame you for security breaches. You have been placed under arrest.";
         }
     }
 
     private void OnApprovePressed() => ProcessPlayerDecision(true);
     private void OnDenyPressed() => ProcessPlayerDecision(false);
 
-    private void UpdateScoreUI()
-    {
-        _scoreLabel.Text = $"Credits: {_score}";
-    }
+    private void UpdateScoreUI() => _scoreLabel.Text = $"Credits: {_score}";
 }
 
 [GlobalClass]
@@ -208,14 +231,16 @@ public partial class NpcData : Resource
     [Export] public string ExpiryDate { get; set; } = "";
     [Export] public string Origin { get; set; } = "";
     [Export] public bool IsAllowed { get; set; } = false;
+    [Export] public string Dialogue { get; set; } = ""; // NEW: NPC dialogue line
 
     public NpcData() { }
 
-    public NpcData(string name, string expiryDate, string origin, bool isAllowed)
+    public NpcData(string name, string expiryDate, string origin, bool isAllowed, string dialogue = "")
     {
         Name = name;
         ExpiryDate = expiryDate;
         Origin = origin;
         IsAllowed = isAllowed;
+        Dialogue = dialogue;
     }
 }
