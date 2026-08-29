@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://btl82dhu8eai7"]
+
+[ext_resource type="Script" uid="uid://be7g6q868t3p2" path="res://scripts/Elmahdi/PauseScreenScript.cs" id="1_k1dgb"]
+
+[node name="PauseScreen" type="Control" unique_id=1560695649]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_k1dgb")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1885307380]
+layout_mode = 0
+offset_left = 658.0
+offset_top = 270.0
+offset_right = 1146.0
+offset_bottom = 351.0
+bbcode_enabled = true
+text = "[center][b][font_size=52][pulse freq=1.0 color=#ffaa0044][color=gold]Game Paused[/color][/pulse][/font_size][/b][/center]"
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1844329783]
+layout_mode = 0
+offset_left = -1.0
+offset_top = -3.0
+offset_right = 1164.0
+offset_bottom = 657.0
+color = Color(0, 0, 0, 0.5176471)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2073292446]
+layout_mode = 0
+offset_left = 179.0
+offset_top = 182.0
+offset_right = 294.0
+offset_bottom = 248.0
+
+[node name="ResumeButton" type="Button" parent="VBoxContainer" unique_id=1410748475]
+layout_mode = 2
+text = "RESUME"
+
+[node name="ExitButton" type="Button" parent="VBoxContainer" unique_id=128524466]
+layout_mode = 2
+text = "EXIT GAME"

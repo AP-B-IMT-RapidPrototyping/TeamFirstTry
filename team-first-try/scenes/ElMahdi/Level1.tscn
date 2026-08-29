@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cnqj8kyy8qpee" path="res://Models/ElMahdi/NPC/simple_office_desk_free.glb" id="4_jnmk5"]
 [ext_resource type="PackedScene" uid="uid://bnq0st5lvi1sk" path="res://scenes/ElMahdi/NPC.tscn" id="5_p2fi4"]
 [ext_resource type="PackedScene" uid="uid://d23xiu12skpku" path="res://Models/ElMahdi/Book/children_books.glb" id="6_dfp3l"]
+[ext_resource type="PackedScene" uid="uid://btl82dhu8eai7" path="res://scenes/ElMahdi/PauseScreen.tscn" id="8_ap6i8"]
 [ext_resource type="PackedScene" uid="uid://cr145usmxsjoi" path="res://scenes/Elisha/desk_manager.tscn" id="8_ovbul"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jnmk5"]
@@ -64,3 +65,5 @@ offset_bottom = 40.0
 
 [node name="DeskManager" parent="." unique_id=1004267637 node_paths=PackedStringArray("NpcSpawner") instance=ExtResource("8_ovbul")]
 NpcSpawner = NodePath("../Path3D/PathFollow3D")
+
+[node name="PauseScreen" parent="." unique_id=1560695649 instance=ExtResource("8_ap6i8")]
