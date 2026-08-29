@@ -25,6 +25,9 @@ public partial class DeskManager : Control
     private Label _endingTitleLabel;
     private Label _endingDescriptionLabel;
 
+    // EXPORT: Link your 3D Spawner here in the Inspector
+    [Export] public PathFollow3dNPC NpcSpawner { get; set; }
+
     // EXPORT: In-Game Date
     [Export] public string GameMonth { get; set; } = "August";
     [Export] public int GameYear { get; set; } = 2028;
@@ -35,13 +38,13 @@ public partial class DeskManager : Control
     // Game Variables
     private int _score = 0;
     private int _maxPossibleScore = 0;
+    private int _npcsProcessed = 0;
     
     private NpcData _currentNpc;
     private Queue<NpcData> _dailyNpcsQueue = new Queue<NpcData>();
 
     public override void _Ready()
     {
-        // 1. Map UI nodes
         _preShiftScreen = GetNode<Control>("PreShiftScreen");
         _gameScreen = GetNode<Control>("GameScreen");
         _endScreen = GetNode<Control>("EndScreen");
@@ -55,25 +58,21 @@ public partial class DeskManager : Control
         _documentDisplayLabel = GetNode<Label>("GameScreen/DocumentDisplayLabel");
         _npcDialogueLabel = GetNode<Label>("GameScreen/NpcDialogueLabel");
         
-        // Radio UI
         _radioPanel = GetNode<Control>("GameScreen/RadioPanel");
         _radioLabel = GetNode<Label>("GameScreen/RadioPanel/RadioLabel");
 
         _endingTitleLabel = GetNode<Label>("EndScreen/EndingTitleLabel");
         _endingDescriptionLabel = GetNode<Label>("EndScreen/EndingDescriptionLabel");
 
-        // 2. Connect Buttons
         _startShiftButton.Pressed += OnStartShiftPressed;
         _approveButton.Pressed += OnApprovePressed;
         _denyButton.Pressed += OnDenyPressed;
 
-        // 3. Initialize UI State
         _gameScreen.Visible = false;
         _endScreen.Visible = false;
         _preShiftScreen.Visible = true;
         _radioPanel.Visible = false;
         
-        // Rules display
         _rulesLabel.Text = $"CURRENT DATE: {GameMonth.ToUpper()} {GameYear}\n" +
                            "=========================================\n" +
                            "DAILY DIRECTIVES & BORDER RESTRICTIONS:\n" +
@@ -89,47 +88,17 @@ public partial class DeskManager : Control
     {
         _dailyNpcsQueue.Clear();
 
-        // Fallback NPC array demonstrating a blend of truthful, false, and neutral radio calls
         if (DailyNpcs == null || DailyNpcs.Count == 0)
         {
             GD.PushWarning("DeskManager: No custom NpcData assigned in Inspector. Using default 5-NPC fallback.");
             
             DailyNpcs = new Godot.Collections.Array<NpcData>
             {
-                // NPC 1: TRUE advice (Builds trust)
-                new NpcData(
-                    "John Doe", "2029-05-12", "Validia", true, 
-                    "Hello officer. I'm visiting family.",
-                    "[RADIO] Colleague: \"Hey, welcome to the shift! Just a reminder, Validia passports are good to go today.\""
-                ),
-                
-                // NPC 2: No Radio Call (Standard check)
-                new NpcData(
-                    "Jane Smith", "2027-01-01", "Validia", false, 
-                    "Please hurry, my flight connection is in ten minutes!",
-                    ""
-                ),
-                
-                // NPC 3: SABOTAGE / FALSE update (The Trap)
-                new NpcData(
-                    "Igor Traitor", "2030-10-10", "Kolechia", false, 
-                    "Everything is in order. My friend on the radio said I'm cleared.",
-                    "[RADIO] Colleague: \"Quick update! High Command made an exception for Kolechia citizens today. Pass them through!\""
-                ),
-                
-                // NPC 4: TRUE advice (Reinforces confusion / disguises the lie)
-                new NpcData(
-                    "Viktor Vane", "2029-04-04", "Antegria", false, 
-                    "I'm just passing through for business. No trouble here.",
-                    "[RADIO] Colleague: \"Heads up, Antegria is still strictly on the banned list today! Don't forget.\""
-                ),
-                
-                // NPC 5: Neutral encouraging call
-                new NpcData(
-                    "Sarah Safe", "2031-11-11", "Arstotzka", true, 
-                    "Glory to Arstotzka! Here are my papers.",
-                    "[RADIO] Colleague: \"Last person of the shift! Finish strong so we can grab lunch.\""
-                )
+                new NpcData("John Doe", "2029-05-12", "Validia", true, "Hello officer. I'm visiting family.", "[RADIO] Colleague: \"Hey, welcome to the shift! Just a reminder, Validia passports are good to go today.\""),
+                new NpcData("Jane Smith", "2027-01-01", "Validia", false, "Please hurry, my flight connection is in ten minutes!", ""),
+                new NpcData("Igor Traitor", "2030-10-10", "Kolechia", false, "Everything is in order. My friend on the radio said I'm cleared.", "[RADIO] Colleague: \"Quick update! High Command made an exception for Kolechia citizens today. Pass them through!\""),
+                new NpcData("Viktor Vane", "2029-04-04", "Antegria", false, "I'm just passing through for business. No trouble here.", "[RADIO] Colleague: \"Heads up, Antegria is still strictly on the banned list today! Don't forget.\""),
+                new NpcData("Sarah Safe", "2031-11-11", "Arstotzka", true, "Glory to Arstotzka! Here are my papers.", "[RADIO] Colleague: \"Last person of the shift! Finish strong so we can grab lunch.\"")
             };
         }
 
@@ -153,11 +122,23 @@ public partial class DeskManager : Control
 
     private void CallNextNpc()
     {
+        // 1. Delete the previous 3D NPC before loading the next
+        if (NpcSpawner != null)
+        {
+            NpcSpawner.DeleteNpc();
+        }
+
         if (_dailyNpcsQueue.Count > 0)
         {
-            _currentNpc = _dailyNpcsQueue.Dequeue();
+            // 2. Spawn the new 3D NPC
+            if (NpcSpawner != null)
+            {
+                NpcSpawner.SpawnNpc();
+            }
 
-            // Display NPC speech line
+            _currentNpc = _dailyNpcsQueue.Dequeue();
+            _npcsProcessed++;
+
             _npcDialogueLabel.Text = $"\"{_currentNpc.Dialogue}\"";
 
             _documentDisplayLabel.Text = $"PASSPORT\n" +
@@ -166,7 +147,6 @@ public partial class DeskManager : Control
                                          $"ORIGIN:  {_currentNpc.Origin}\n" +
                                          $"EXPIRES: {_currentNpc.ExpiryDate}";
 
-            // Display Radio Message if one exists for this NPC
             if (!string.IsNullOrEmpty(_currentNpc.RadioMessage))
             {
                 _radioPanel.Visible = true;
@@ -250,7 +230,7 @@ public partial class NpcData : Resource
     [Export] public string Origin { get; set; } = "";
     [Export] public bool IsAllowed { get; set; } = false;
     [Export] public string Dialogue { get; set; } = "";
-    [Export] public string RadioMessage { get; set; } = ""; // NEW: Per-NPC radio callout
+    [Export] public string RadioMessage { get; set; } = ""; 
 
     public NpcData() { }
 
