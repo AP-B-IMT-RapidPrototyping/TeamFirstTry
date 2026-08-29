@@ -10,7 +10,7 @@ public partial class PathFollow3dNPC : PathFollow3D
 
     public override void _Process(double delta)
     {
-        // Move the NPC along the path until it reaches the end (ProgressRatio = 1.0)
+        // Move the NPC along the path until it reaches the end
         if (_currentNpc != null && ProgressRatio < 1.0f)
         {
             Progress += _speed * (float)delta;
@@ -28,7 +28,7 @@ public partial class PathFollow3dNPC : PathFollow3D
         Progress = 0.0f; // Start at the beginning of the path
     }
     
-    // Changed to public so DeskManager can call it
+    // I Changed it to public so DeskManager can call it
     public void DeleteNpc()
     {
         if (_currentNpc == null) 

@@ -135,7 +135,7 @@ public partial class DeskManager : Control
 
     private void CallNextNpc()
     {
-        // 1. Delete the previous 3D NPC before loading the next
+        // TO Delete the previous 3D NPC before loading the next
         if (NpcSpawner != null)
         {
             NpcSpawner.DeleteNpc();
@@ -143,7 +143,7 @@ public partial class DeskManager : Control
 
         if (_dailyNpcsQueue.Count > 0)
         {
-            // 2. Spawn the new 3D NPC
+            // TO Spawn the new 3D NPC
             if (NpcSpawner != null)
             {
                 NpcSpawner.SpawnNpc();
