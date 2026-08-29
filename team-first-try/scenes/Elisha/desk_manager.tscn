@@ -54,6 +54,7 @@ offset_right = 853.0
 offset_bottom = 114.0
 
 [node name="ScoreLabel" type="Label" parent="GameScreen" unique_id=1923335267]
+visible = false
 layout_mode = 0
 offset_left = 992.0
 offset_top = 7.0
