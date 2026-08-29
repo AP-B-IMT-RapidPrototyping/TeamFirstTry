@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bnq0st5lvi1sk" path="res://scenes/ElMahdi/NPC.tscn" id="5_p2fi4"]
 [ext_resource type="PackedScene" uid="uid://d23xiu12skpku" path="res://Models/ElMahdi/Book/children_books.glb" id="6_dfp3l"]
 [ext_resource type="PackedScene" uid="uid://c43ujjgfkuoex" path="res://scenes/ElMahdi/InteractDisplay.tscn" id="7_tqb5b"]
+[ext_resource type="PackedScene" uid="uid://cr145usmxsjoi" path="res://scenes/Elisha/desk_manager.tscn" id="8_ovbul"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jnmk5"]
 sky_top_color = Color(0.8911677, 0.7561101, 0.6571787, 1)
@@ -64,3 +65,6 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="DeskManager" parent="." unique_id=1004267637 node_paths=PackedStringArray("NpcSpawner") instance=ExtResource("8_ovbul")]
+NpcSpawner = NodePath("../Path3D/PathFollow3D")
