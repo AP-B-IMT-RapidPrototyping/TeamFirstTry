@@ -17,7 +17,7 @@ public partial class DeskManager : Control
     private Button _denyButton;
     private Label _scoreLabel;
     private Label _documentDisplayLabel;
-    private Label _npcDialogueLabel; // NEW: Label for NPC speech
+    private Label _npcDialogueLabel;
     private Control _radioPanel;
     private Label _radioLabel;
 
@@ -35,7 +35,6 @@ public partial class DeskManager : Control
     // Game Variables
     private int _score = 0;
     private int _maxPossibleScore = 0;
-    private int _npcsProcessed = 0;
     
     private NpcData _currentNpc;
     private Queue<NpcData> _dailyNpcsQueue = new Queue<NpcData>();
@@ -54,7 +53,7 @@ public partial class DeskManager : Control
         _denyButton = GetNode<Button>("GameScreen/DenyButton");
         _scoreLabel = GetNode<Label>("GameScreen/ScoreLabel");
         _documentDisplayLabel = GetNode<Label>("GameScreen/DocumentDisplayLabel");
-        _npcDialogueLabel = GetNode<Label>("GameScreen/NpcDialogueLabel"); // NEW
+        _npcDialogueLabel = GetNode<Label>("GameScreen/NpcDialogueLabel");
         
         // Radio UI
         _radioPanel = GetNode<Control>("GameScreen/RadioPanel");
@@ -74,7 +73,7 @@ public partial class DeskManager : Control
         _preShiftScreen.Visible = true;
         _radioPanel.Visible = false;
         
-        // Complex rule set display
+        // Rules display
         _rulesLabel.Text = $"CURRENT DATE: {GameMonth.ToUpper()} {GameYear}\n" +
                            "=========================================\n" +
                            "DAILY DIRECTIVES & BORDER RESTRICTIONS:\n" +
@@ -90,27 +89,47 @@ public partial class DeskManager : Control
     {
         _dailyNpcsQueue.Clear();
 
-        // Hardcoded 5 NPC fallback array with custom NPC dialogue
+        // Fallback NPC array demonstrating a blend of truthful, false, and neutral radio calls
         if (DailyNpcs == null || DailyNpcs.Count == 0)
         {
             GD.PushWarning("DeskManager: No custom NpcData assigned in Inspector. Using default 5-NPC fallback.");
             
             DailyNpcs = new Godot.Collections.Array<NpcData>
             {
-                // NPC 1: Valid (Validia, Exp 2029) -> ALLOW
-                new NpcData("John Doe", "2029-05-12", "Validia", true, "Hello officer. I'm visiting family for the holidays."),
+                // NPC 1: TRUE advice (Builds trust)
+                new NpcData(
+                    "John Doe", "2029-05-12", "Validia", true, 
+                    "Hello officer. I'm visiting family.",
+                    "[RADIO] Colleague: \"Hey, welcome to the shift! Just a reminder, Validia passports are good to go today.\""
+                ),
                 
-                // NPC 2: Invalid (Expired: 2027) -> DENY
-                new NpcData("Jane Smith", "2027-01-01", "Validia", false, "Please hurry, my flight connection is in ten minutes!"),
+                // NPC 2: No Radio Call (Standard check)
+                new NpcData(
+                    "Jane Smith", "2027-01-01", "Validia", false, 
+                    "Please hurry, my flight connection is in ten minutes!",
+                    ""
+                ),
                 
-                // NPC 3: Sabotage Target (Banned origin: Kolechia) -> DENY
-                new NpcData("Igor Traitor", "2030-10-10", "Kolechia", false, "Everything is in order. My friend on the radio said I'm cleared."),
+                // NPC 3: SABOTAGE / FALSE update (The Trap)
+                new NpcData(
+                    "Igor Traitor", "2030-10-10", "Kolechia", false, 
+                    "Everything is in order. My friend on the radio said I'm cleared.",
+                    "[RADIO] Colleague: \"Quick update! High Command made an exception for Kolechia citizens today. Pass them through!\""
+                ),
                 
-                // NPC 4: Invalid (Banned origin: Antegria) -> DENY
-                new NpcData("Viktor Vane", "2029-04-04", "Antegria", false, "I'm just passing through for business. No trouble here."),
+                // NPC 4: TRUE advice (Reinforces confusion / disguises the lie)
+                new NpcData(
+                    "Viktor Vane", "2029-04-04", "Antegria", false, 
+                    "I'm just passing through for business. No trouble here.",
+                    "[RADIO] Colleague: \"Heads up, Antegria is still strictly on the banned list today! Don't forget.\""
+                ),
                 
-                // NPC 5: Valid (Arstotzka, Exp 2031 >= 2030) -> ALLOW
-                new NpcData("Sarah Safe", "2031-11-11", "Arstotzka", true, "Glory to Arstotzka! Here are my papers.")
+                // NPC 5: Neutral encouraging call
+                new NpcData(
+                    "Sarah Safe", "2031-11-11", "Arstotzka", true, 
+                    "Glory to Arstotzka! Here are my papers.",
+                    "[RADIO] Colleague: \"Last person of the shift! Finish strong so we can grab lunch.\""
+                )
             };
         }
 
@@ -137,7 +156,6 @@ public partial class DeskManager : Control
         if (_dailyNpcsQueue.Count > 0)
         {
             _currentNpc = _dailyNpcsQueue.Dequeue();
-            _npcsProcessed++;
 
             // Display NPC speech line
             _npcDialogueLabel.Text = $"\"{_currentNpc.Dialogue}\"";
@@ -148,11 +166,11 @@ public partial class DeskManager : Control
                                          $"ORIGIN:  {_currentNpc.Origin}\n" +
                                          $"EXPIRES: {_currentNpc.ExpiryDate}";
 
-            // Trigger radio dialogue on NPC 3
-            if (_npcsProcessed == 3)
+            // Display Radio Message if one exists for this NPC
+            if (!string.IsNullOrEmpty(_currentNpc.RadioMessage))
             {
                 _radioPanel.Visible = true;
-                _radioLabel.Text = "[RADIO - COLLEAGUE]\n\"Hey! High Command just sent an emergency update. All bans on Kolechia and Antegria are suspended today. Let them through!\"";
+                _radioLabel.Text = _currentNpc.RadioMessage;
             }
             else
             {
@@ -204,7 +222,7 @@ public partial class DeskManager : Control
         if (percentage >= 1.0f)
         {
             _endingTitleLabel.Text = "SECRET GOOD ENDING: PROMOTED!";
-            _endingDescriptionLabel.Text = "100% ACCURACY.\n\nYou memorized every rule and ignored your colleague's fake radio transmissions. Internal Affairs arrested your colleague and promoted you to Station Inspector.";
+            _endingDescriptionLabel.Text = "100% ACCURACY.\n\nYou memorized every rule and spotted your colleague's false radio instructions. Internal Affairs arrested your colleague and promoted you to Station Inspector.";
         }
         else if (percentage >= 0.6f)
         {
@@ -231,16 +249,18 @@ public partial class NpcData : Resource
     [Export] public string ExpiryDate { get; set; } = "";
     [Export] public string Origin { get; set; } = "";
     [Export] public bool IsAllowed { get; set; } = false;
-    [Export] public string Dialogue { get; set; } = ""; // NEW: NPC dialogue line
+    [Export] public string Dialogue { get; set; } = "";
+    [Export] public string RadioMessage { get; set; } = ""; // NEW: Per-NPC radio callout
 
     public NpcData() { }
 
-    public NpcData(string name, string expiryDate, string origin, bool isAllowed, string dialogue = "")
+    public NpcData(string name, string expiryDate, string origin, bool isAllowed, string dialogue = "", string radioMessage = "")
     {
         Name = name;
         ExpiryDate = expiryDate;
         Origin = origin;
         IsAllowed = isAllowed;
         Dialogue = dialogue;
+        RadioMessage = radioMessage;
     }
 }

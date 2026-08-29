@@ -80,10 +80,10 @@ offset_bottom = 556.0
 
 [node name="RadioLabel" type="Label" parent="GameScreen/RadioPanel" unique_id=826886892]
 layout_mode = 0
-offset_left = -23.0
-offset_top = -22.0
-offset_right = 547.0
-offset_bottom = 71.0
+offset_left = -2.0
+offset_top = -4.0
+offset_right = 514.0
+offset_bottom = 62.0
 
 [node name="NpcDialogueLabel" type="Label" parent="GameScreen" unique_id=13765598]
 layout_mode = 0
