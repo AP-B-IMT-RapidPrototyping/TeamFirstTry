@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://cnqj8kyy8qpee" path="res://Models/ElMahdi/NPC/simple_office_desk_free.glb" id="4_jnmk5"]
 [ext_resource type="PackedScene" uid="uid://bnq0st5lvi1sk" path="res://scenes/ElMahdi/NPC.tscn" id="5_p2fi4"]
 [ext_resource type="PackedScene" uid="uid://d23xiu12skpku" path="res://Models/ElMahdi/Book/children_books.glb" id="6_dfp3l"]
-[ext_resource type="PackedScene" uid="uid://c43ujjgfkuoex" path="res://scenes/ElMahdi/InteractDisplay.tscn" id="7_tqb5b"]
 [ext_resource type="PackedScene" uid="uid://cr145usmxsjoi" path="res://scenes/Elisha/desk_manager.tscn" id="8_ovbul"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jnmk5"]
@@ -56,9 +55,6 @@ _npcScene = ExtResource("5_p2fi4")
 
 [node name="Books" parent="." unique_id=833633491 instance=ExtResource("6_dfp3l")]
 transform = Transform3D(0.016178114, -1.4143358e-09, -0.025263978, -2.6226834e-09, -0.03, 1.8635285e-23, -0.025263978, 2.2086473e-09, -0.016178114, -4.063697, 1.0690943, 7.557856)
-
-[node name="InteractDisplay" parent="." unique_id=2045204803 instance=ExtResource("7_tqb5b")]
-transform = Transform3D(0.80537, 0, 0.5927725, 0, 1, 0, -0.5927725, 0, 0.80537, -4.1968937, 1.5139825, 7.112772)
 
 [node name="Control" type="Control" parent="." unique_id=1407267183]
 layout_mode = 3

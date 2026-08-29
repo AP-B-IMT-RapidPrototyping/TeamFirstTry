@@ -17,7 +17,7 @@ public partial class CharacterBody3d : CharacterBody3D
 	public override void _Ready()
 	{
     	_head = GetNode<Node3D>("Head");
-    	Input.MouseMode = Input.MouseModeEnum.Captured;
+    	Input.MouseMode = Input.MouseModeEnum.Visible;
 	}
 
 	public override void _UnhandledInput(InputEvent @event)
